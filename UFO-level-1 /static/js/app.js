@@ -5,15 +5,31 @@ var tableData = data;
 console.log(data);
 
 var button=d3.select("#filter-btn")
+var tbody = d3.select("tbody")
+var rows=tbody.append("tr");
+
+data.forEach(function(signting_stats){
+
+    console.log(signting_stats);
+    var row = tbody.append("tr");
+
+    Object.entries(signting_stats).forEach(function([key, value]){
+    console.log(key, value);
+    var cell = row.append("td");
+    cell.text(value);
+    });
+
+});
 
 //Define event handler
 
 button.on("click", function(){
+    //Remove existing table
+    d3.select("tbody").html("");
+
+
     // Prevent the page from refreshing
     d3.event.preventDefault();
-
-    var tbody = d3.select("tbody")
-    var rows=tbody.append("tr");
     
 
     //Extract input element
